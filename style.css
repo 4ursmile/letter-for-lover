@@ -1,0 +1,353 @@
+/* --- Global Styles & Colors --- */
+:root {
+    --bg-color: #FDFBF6;    
+    --text-dark: #2A2A2A;   
+    --text-light: #555555;  
+    --accent-color: #4BAF9A; 
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Montserrat', sans-serif;
+    --leaf-color: #D9822B; 
+    --flower-color: #E6525C;
+    --burst-leaf-color: #55a630;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+
+/* --- Hero Section (Unchanged) --- */
+#hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 2rem; position: relative; overflow: hidden; }
+.hero-background-elements { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: 1; }
+.svg-elements { width: 100%; height: 100%; display: block; position: absolute; bottom: 0; left: 0; transform-origin: bottom center; }
+.hero-content { position: relative; z-index: 10; will-change: transform, opacity; }
+#hero-title { font-family: var(--font-serif); font-size: 4.5vw; font-weight: 700; color: var(--text-dark); line-height: 1.2; margin: 0; }
+#hero-subtitle { font-family: var(--font-sans); font-size: 1.2vw; font-weight: 500; color: var(--text-light); margin-top: 1rem; letter-spacing: 0.5px; }
+
+/* --- Heart/Leaf Interactions (Unchanged) --- */
+#heart-balloon-container { cursor: pointer; will-change: transform; z-index: 5; }
+#heart-balloon-container:hover { animation: wiggle 0.3s ease-in-out infinite alternate; }
+@keyframes wiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(2deg); } }
+#heart-burst-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9; overflow: hidden; }
+.heart-particle { position: absolute; width: 15px; height: 15px; background-color: var(--flower-color); transform: rotate(-45deg); opacity: 0; border-radius: 50% 50% 0 50%; }
+#leaf-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 8; overflow: hidden; }
+.maple-leaf { position: absolute; width: 30px; height: 30px; will-change: transform, opacity; }
+.maple-leaf svg { width: 100%; height: 100%; fill: var(--leaf-color); stroke: var(--text-dark); stroke-width: 1; }
+
+/* --- Scroll Down Sign (Unchanged) --- */
+.scroll-down-sign { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 11; display: flex; align-items: center; justify-content: center; gap: 20px; }
+.mouse-icon { opacity: 0.7; }
+#scroll-wheel { will-change: transform, opacity; }
+.chevron { opacity: 0; will-change: transform, opacity; }
+
+/* --- Map Section & Flight Info (Unchanged) --- */
+#map-section { padding: 6rem 3rem; text-align: center; position: relative; z-index: 1; background-color: var(--bg-color); opacity: 0; transform: translateY(100px); will-change: opacity, transform; }
+#map-section h2 { font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 2rem; color: var(--text-dark); }
+#leaflet-map { height: 500px; width: 100%; background-color: #f0f0f0; border: 1px solid #ddd; border-radius: 8px; z-index: 1; }
+#flight-info-container { position: absolute; bottom: 5rem; right: 5rem; width: 300px; background: rgba(255, 255, 255, 0.9); border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 1.5rem; text-align: left; font-size: 0.9rem; z-index: 1000; opacity: 0; transform: scale(0.9); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+#flight-info-container h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--text-dark); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+#flight-info-container p { margin-bottom: 0.5rem; line-height: 1.5; }
+#flight-info-container p strong { color: var(--text-dark); min-width: 100px; display: inline-block; }
+#flight-info-container .note { font-style: italic; color: #b30000; margin-top: 1rem; font-weight: 500; }
+.plane-icon { background: none; border: none; }
+.plane-icon svg { width: 40px; height: 40px; fill: var(--text-dark); transform: rotate(110deg); filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); }
+
+/* --- See the View Button --- */
+#map-click-trigger {
+    position: absolute;
+    background: linear-gradient(135deg, #E6525C 0%, #FF9A8B 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 30px;
+    box-shadow: 0 6px 15px rgba(230, 82, 92, 0.4);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+#map-click-trigger:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(230, 82, 92, 0.6);
+}
+
+#map-click-trigger .trigger-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#map-click-trigger .emoji {
+    font-size: 1.5rem;
+    animation: floatEmoji 2s ease-in-out infinite alternate;
+}
+
+#map-click-trigger .trigger-text h3 {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+#map-click-trigger .trigger-text p {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+@keyframes floatEmoji {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-6px); }
+}
+
+/* --- NEW: Panorama Overlay --- */
+#panorama-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 10000;
+    display: none; /* Hidden by default */
+    opacity: 0;
+}
+#panorama-viewer {
+    width: 100%;
+    height: 100%;
+}
+#pano-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10002;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    line-height: 38px;
+    transition: all 0.3s ease;
+}
+#pano-close-btn:hover {
+    background: white;
+    transform: rotate(90deg);
+}
+#pano-leaf-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10001; /* Above pano, below modals */
+    overflow: hidden;
+}
+
+/* --- NEW: Panorama Modals (Letter & Flower) --- */
+/* General modal layout improvements */
+/* ===== MODAL OVERLAY ===== */
+/* ===== PANORAMA MODALS FIX ===== */
+.pano-modal {
+    position: fixed;
+    inset: 0;
+    display: flex; /* Always center */
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: 10003;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* When shown — JS toggles class for clarity */
+.pano-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+/* ===== MODAL CONTENT ===== */
+.modal-content {
+    position: relative;
+    background: var(--bg-color);
+    border-radius: 20px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.45);
+    padding: 2rem 2.5rem;
+    width: 80%;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    animation: fadeInModal 0.6s ease-out forwards;
+}
+
+/* ===== CLOSE BUTTON — improved visibility ===== */
+.modal-close-btn {
+    position: relative;
+    top: 12px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+.modal-close-btn:hover {
+    background: var(--flower-color);
+    color: white;
+    transform: rotate(90deg) scale(1.15);
+}
+
+
+/* ===== LETTER MODAL ===== */
+#letter-modal .modal-content {
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+#letter-modal h2 {
+    font-family: var(--font-serif);
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+/* scrollable text area */
+.letter-scroll {
+    width: 100%;
+    max-height: 65vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+    font-family: var(--font-sans);
+    line-height: 1.8;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+/* elegant scrollbar */
+.letter-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.letter-scroll::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 3px;
+}
+.letter-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== FLOWER MODAL ===== */
+#flower-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+/* Flower image */
+#flower-img {
+    width: 240px;
+    height: auto;
+    user-select: none;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.25));
+    animation: flowerAppear 1.2s ease-out forwards;
+}
+
+@keyframes flowerAppear {
+    0% { opacity: 0; transform: scale(0.7) rotate(-8deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Flower text */
+#flower-text {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadeInText 1.5s ease forwards 1s;
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== FIREWORK EFFECT ===== */
+#flower-particle-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.firework-particle {
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    filter: blur(0.8px);
+    transform-origin: center;
+    z-index: 10005;
+    animation: glowPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    from { filter: brightness(1) blur(0.5px); }
+    to { filter: brightness(1.6) blur(1px); }
+}
+
+/* ===== HOTSPOTS ===== */
+.custom-hotspot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.custom-hotspot:hover {
+    transform: scale(1.2);
+}
+
+.letter-hotspot {
+    background: rgba(230, 82, 92, 0.8);
+    background-image: url('./assets/love-letter.png');
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.flower-hotspot {
+    background: rgba(75, 175, 154, 0.8);
+    background-image: url('./assets/tulips.png');
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+

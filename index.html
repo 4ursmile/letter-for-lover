@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-R">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Women's Day</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section id="hero">
+        <div id="leaf-container"></div>
+        <div class="hero-background-elements">
+            <svg viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-elements">
+                <g id="clouds" style="will-change: transform;"><path d="M100 200C130 150 170 150 200 200C230 250 170 250 140 200C110 150 70 150 100 200Z" fill="#F0F5F7" stroke="#2A2A2A" stroke-width="2"/><path d="M1100 150C1130 100 1170 100 1200 150C1230 200 1170 200 1140 150C1110 100 1070 100 1100 150Z" fill="#F0F5F7" stroke="#2A2A2A" stroke-width="2"/><path d="M700 100C730 50 770 50 800 100C830 150 770 150 740 100C710 50 670 50 700 100Z" fill="#F0F5F7" stroke="#2A2A2A" stroke-width="2"/></g>
+                <g id="landscape" style="will-change: transform;"><path d="M0 500C200 450 400 550 700 500C1000 450 1200 550 1440 500V800H0V500Z" fill="#D7E0E3"/><path d="M0 500C200 450 400 550 700 500C1000 450 1200 550 1440 500" stroke="#2A2A2A" stroke-width="2"/><path d="M-50 800L250 400L450 550L600 480L0 800H-50Z" fill="#C9D3D6"/><path d="M-50 800L250 400L450 550L600 480" stroke="#2A2A2A" stroke-width="2"/><path d="M20 700L50 600L80 700L110 600L140 700M50 700V550M110 700V550" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round"/><path d="M1490 800L1290 450L1090 600L940 500L1440 800H1490Z" fill="#C9D3D6"/><path d="M1490 800L1290 450L1090 600L940 500" stroke="#2A2A2A" stroke-width="2"/><path d="M1300 700L1330 600L1360 700L1390 600L1420 700M1330 700V550M1390 700V550" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round"/></g>
+                <g id="heart-balloon-container" style="cursor: pointer; will-change: transform;" ><path id="heart-balloon-shape" d="M720 280C700 240 660 220 660 200C660 180 680 160 700 160C720 160 740 180 740 200C740 220 700 240 720 280Z" fill="#E6525C" stroke="#2A2A2A" stroke-width="2"/><path id="heart-balloon-string" d="M700 280L700 350" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 4"/><circle id="heart-balloon-knot" cx="700" cy="360" r="5" fill="#E6525C" stroke="#2A2A2A" stroke-width="1"/></g>
+            </svg>
+        </div>
+        <div id="heart-burst-container"></div> 
+        <div class="hero-content">
+            <h1 id="hero-title">Happy Women's Day Su - My Love</h1>
+            <p id="hero-subtitle">From your lover, babe.</p>
+        </div>
+        <div class="scroll-down-sign">
+            <svg class="chevron left-chevron" width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L8 10L12 6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 12L8 16L12 12" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="mouse-icon" width="30" height="45" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="22" height="34" rx="11" stroke="#2A2A2A" stroke-width="2"/><circle id="scroll-wheel" cx="12" cy="10" r="3" fill="#2A2A2A"/></svg>
+            <svg class="chevron right-chevron" width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L8 10L12 6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 12L8 16L12 12" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+    </section>
+
+    <section id="map-section">
+        <h2>Our Journey</h2>
+        <div id="leaflet-map"></div>
+        <div id="flight-info-container"></div>
+        </section>
+
+    <section id="panorama-overlay">
+        <div id="panorama-viewer"></div>
+        <div id="pano-leaf-container"></div> <button id="pano-close-btn" title="Close Viewer">&times;</button>
+
+        <div id="letter-modal" class="pano-modal">
+            <button class="modal-close-btn">&times;</button>
+            <div class="modal-content">
+            <h2>Gửi em yêu,</h2>
+            <div class="letter-scroll">
+                <p>Chúc em một ngày tốt lành nhé! Hì hì.</p>
+                <p>Sắp 20/10 rồi nhỉ. Thế là một ngày lễ nữa lại đến mà mình lại không ở cùng nhau để "ăn lễ". Trước đây anh nghĩ ngày lễ cũng giống thường ngày thôi, lại trôi, lại trôi rồi lại qua. Nhưng mà từ khi có em, anh cứ có cảm giác muốn được làm gì đó đặc biệt cùng em (chắc là anh không bị FOMO đâu).</p>
+                <p>Nhìn người ta được tặng quà, anh cũng muốn tặng cho em. Thật sự anh không muốn mõm thôi đâu, anh không muốn em cảm thấy buồn, tủi. Em nói em buồn vì nhìn người ta đi chơi. Anh biết em nói không cần, nhưng mà anh vẫn muốn làm gì đó. Thật ra, anh muốn ship cho em tô bún nghệ còn hơn, mà cũng chẳng có cách nào. Lễ càng gần, anh lại càng thấy lòng mình rộn ràng.</p>
+                <p>Thế là anh dành thời gian lên ý tưởng rồi làm một cái web nho nhỏ, "giả lập" anh đến bên em ngày lễ, hì hì. Lâu rồi chưa động nên nó hơi bug. Lúc đầu, anh định làm countdown để đến ngày là nó tự bung ra luôn, nhưng mà đang bug lòi đủ thứ không cứu được. Hy vọng không quá ngày 20/10 - ít nhất là giờ ở Mỹ, nhở.</p>
+                <p>Thành phẩm thì anh thấy cũng hơi "hài cốt" nhưng mà chắc cũng không đến nỗi tệ, hì hì. Hy vọng em sẽ thấy vui.</p>
+                <p>Thu đến rồi. Sáng mát trong như sáng mùa thu, hương Cốm đã phảng phất giữa phố cổ rồi (Chắc là em thèm cốm rồi nhỉ hì hì). Chắc năm nay mùa đông ở Việt Nam lại đến trễ, đến giờ trời vẫn chưa lạnh. Nhưng mà người thì nhớ em lắm rùi.</p>
+                <p>Bên đó mùa thu lại có lá phong nhỉ. Em cứ khoe với anh về cái lá phong, anh vui lắm. Lá phong thật đẹp, em cũng đẹp lắm. Nhưng anh vui nhất là vì em kể với anh cả những điều nhỏ xíuu nhất. Anh thật sự, thật sự thích lắm. Anh chỉ sợ em không nói gì với anh thôi.</p>
+                <p>Anh thì đôi lúc hơi ít nói, lại có đôi lúc nói hơi nhiều, kiểu cứ phấn khích hay FOMO là cứ nói, cứ làm cái gì ý. Hy vọng em nhắc anh nhiều hơn, iuu nhé.</p>
+                <p>Trời lạnh cũng là lúc nắng tắt dần, thiếu sinh khí, cơ thể cũng nhạy cảm. Iuu nhớ ăn uống đầy đủ, thật vui, thật khỏe nhá. Hình như dạo này anh nhắc hơi lố về đồ ngọt phải hông ta? Xin lỗi em nhá, anh hơi lố qué. Nhiều lúc em cứ kể đau đầu với ăn bánh, anh lại sợ em bị đường huyết cao - anh hơi lo xa rùi nhỉ.</p>
+                <p>Iuu ơi, anh nhớ em lắm. Đếm đi đếm lại cũng hơn được nửa thời gian rùi. Tuần sau em bắt đầu đi làm rùi nhỉ? Vậy thì mình không được nói chuyện nhiều rồi. Hy vọng vẫn tranh thủ, tranh thủ "gặp nhau" thật nhiều, thật nhiều.</p>
+                <p>Nhân ngày 20/10, anh chúc em thật nhiều hạnh phúc, sức khỏe, học thật thật giỏi và thật xinh đẹp nữa, hì hì.</p>
+                <p>Mong em chân cứng đá mềm ở đất khách, cố gắng học tập. Anh chờ em về. Đừng để những suy nghĩ tiêu cực làm chùn bước, đừng để trái tim thiếu đi ngọn lửa. Cứ mạnh dạn, cứ tin anh.</p>
+                <p>Thương nhớ iuu,</p>
+                <p>Anh iu của em</p>
+                <p>20/10/2025</p>
+            </div>
+        </div>
+
+        </div>
+
+        <div id="flower-modal" class="pano-modal">
+            <button class="modal-close-btn">&times;</button>
+            <div class="modal-content">
+                <img id="flower-img" src="assets/flower.png" alt="Flower" />
+                <h3 id="flower-text">Flower for you.</h3>
+                <div id="flower-particle-burst"></div>
+            </div>
+        </div>
+    </section>
+
+    <audio id="background-audio" loop>
+        <source src="./assets/chungtacuahientai.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
